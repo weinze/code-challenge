@@ -7,18 +7,18 @@
 <div>
     <a href="/code-challenge/report">Volver</a>
 </div>
-<h2>Top Countries</h2>
+<h2>Countries and runways</h2>
 <div class="table">
     <div class="table-row">
         <div class="table-head"><strong>Code</strong></div>
         <div class="table-head"><strong>Name</strong></div>
-        <div class="table-head"><strong>Total airports</strong></div>
+        <div class="table-head"><strong>Runways</strong></div>
     </div>
     #foreach( $value in $report )
     <div class="table-row">
         <div class="table-cell">$value.country.code</div>
         <div class="table-cell">$value.country.name</div>
-        <div class="table-cell">$value.airports</div>
+        <div class="table-cell">$value.runways</div>
     </div>
     #end
 </div>

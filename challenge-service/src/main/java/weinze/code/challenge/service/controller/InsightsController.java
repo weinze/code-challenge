@@ -8,50 +8,56 @@ import static weinze.code.challenge.service.utils.JsonUtils.transformer;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import spark.QueryParamsMap;
 import spark.Route;
-import weinze.code.challenge.domain.services.InsightsService;
+import weinze.code.challenge.domain.services.ApiService;
 import weinze.code.challenge.service.utils.PathsUtils;
 
 @Singleton
 public class InsightsController implements GenericController {
 
-    private InsightsService insightsService;
+    private ApiService apiService;
 
     @Inject
-    public InsightsController(InsightsService insightsService) {
-        this.insightsService = insightsService;
+    public InsightsController(ApiService apiService) {
+        this.apiService = apiService;
     }
 
     @Override
     public void initRoutes() {
         path(PathsUtils.getApiPath("insights"), () -> {
-            get("/test", map((req, res) -> this.topTenAsc()), transformer());
-            get("/test2", map((req, res) -> this.topTenDesc()), transformer());
-            get("/test3", map((req, res) -> this.runwaysByCountry()), transformer());
-            get("/test4", map((req, res) -> this.topTenRunways()), transformer());
+            get("/topCountries", map((req, res) -> this.topCountries(req.queryMap())), transformer());
+            get("/runwaysByCountry", map((req, res) -> this.runwaysByCountry()), transformer());
+            get("/topTenRunways", map((req, res) -> this.topTenRunways()), transformer());
         });
     }
 
-    // TODO TopTen con mismo path, orden en query
-    private Route topTenAsc() {
-        return ok(insightsService.topCountriesWithMoreAirports(10, false));
-    }
-
-    private Route topTenDesc() {
-        return ok(insightsService.topCountriesWithMoreAirports(10, true));
+    /**
+     * Top 10 de países con el mayor número de aeropuertos (acompañado dela cifra),
+     * así como el top 10 de países con menos aeropuertos (de nuevo, con cifras).
+     */
+    private Route topCountries(QueryParamsMap query) {
+        return ok(apiService.topCountriesWithMoreAirports(10, getOrder(query)));
     }
 
     /**
      * Tipos de pista por país (surface)
      */
     private Route runwaysByCountry() {
-        return ok(insightsService.runwaysByCountry());
+        return ok(apiService.runwaysByCountry());
     }
 
     /**
      * Top 10 de tipos de pistas más comunes (le_ident)
      */
     private Route topTenRunways() {
-        return ok(insightsService.topRunways(10));
+        return ok(apiService.topRunways(10));
+    }
+
+    private boolean getOrder(QueryParamsMap query) {
+        if(query.hasKey("desc")) {
+            return query.get("desc").booleanValue();
+        }
+        return false;
     }
 }

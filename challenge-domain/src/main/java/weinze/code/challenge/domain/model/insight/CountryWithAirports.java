@@ -2,14 +2,12 @@ package weinze.code.challenge.domain.model.insight;
 
 import weinze.code.challenge.domain.model.Country;
 
-public class ContryWithAirports {
+public class CountryWithAirports {
 
     private Country country;
     private Long airports;
 
-    public ContryWithAirports() {}
-
-    public ContryWithAirports(Country country, Long airports) {
+    public CountryWithAirports(Country country, Long airports) {
         this.country = country;
         this.airports = airports;
     }

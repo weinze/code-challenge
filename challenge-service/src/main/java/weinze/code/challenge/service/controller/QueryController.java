@@ -1,6 +1,5 @@
 package weinze.code.challenge.service.controller;
 
-import static java.util.Objects.nonNull;
 import static spark.Spark.get;
 import static weinze.code.challenge.service.controller.factory.RouteFactory.map;
 
@@ -33,17 +32,14 @@ public class QueryController implements GenericController {
         return map(attributes, "query.vm");
     }
 
-    // TODO
     private AirlineFilter buildFilter(QueryParamsMap query) {
         final AirlineFilter filter = new AirlineFilter();
-        if(nonNull(query)) {
-            final QueryParamsMap country = query.get("country");
-            if(country.hasValue()) {
-                if(country.value().equals("name")) {
-                    filter.setCountryName(query.get("value").value());
-                } else if(country.value().equals("code")) {
-                    filter.setCountryCode(query.get("value").value());
-                }
+        final QueryParamsMap country = query.get("country");
+        if(country.hasValue()) {
+            if(country.value().equals("name")) {
+                filter.setCountryName(query.get("value").value());
+            } else if(country.value().equals("code")) {
+                filter.setCountryCode(query.get("value").value());
             }
         }
         return filter;

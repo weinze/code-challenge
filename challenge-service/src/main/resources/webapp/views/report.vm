@@ -1,1 +1,14 @@
-<a href="report/topCountries">Top countries</a>
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<h2>Reports</h2>
+<ul>
+    <li><a href="report/topCountries?desc=false">Top 10 de países con el mayor número de aeropuertos</a></li>
+    <li><a href="report/topCountries?desc=true">Top 10 de países con el menor número de aeropuertos</a></li>
+    <li><a href="report/runwaysByCountry">Tipos de pistas por país</a></li>
+    <li><a href="report/topRunways">Top 10 de tipos de pistas más comunes</a></li>
+</ul>
+</body>
+</html>

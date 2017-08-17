@@ -42,10 +42,6 @@ public class AirportController implements GenericController {
         if(nonNull(query)) {
             filter.setCountryName(query.get("country_name").value());
             filter.setCountryCode(query.get("country_code").value());
-            if(StringUtils.isNotBlank(query.get("options").value())) {
-                // TODO trim()
-                filter.setOptions(Arrays.asList(query.get("options").value().split(",")));
-            }
         }
         return filter;
     }

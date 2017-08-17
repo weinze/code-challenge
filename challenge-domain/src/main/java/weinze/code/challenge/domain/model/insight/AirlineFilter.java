@@ -1,12 +1,9 @@
 package weinze.code.challenge.domain.model.insight;
 
-import java.util.List;
-
 public class AirlineFilter {
 
     private String countryName;
     private String countryCode;
-    private List<String> options;
 
     public String getCountryName() {
         return countryName;
@@ -22,13 +19,5 @@ public class AirlineFilter {
 
     public void setCountryCode(String countryCode) {
         this.countryCode = countryCode;
-    }
-
-    public List<String> getOptions() {
-        return options;
-    }
-
-    public void setOptions(List<String> options) {
-        this.options = options;
     }
 }
