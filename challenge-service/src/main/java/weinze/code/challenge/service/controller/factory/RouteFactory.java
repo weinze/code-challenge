@@ -39,7 +39,7 @@ public class RouteFactory {
     }
 
     public static String map(Map<String, Object> model, String templatePath) {
-        return new VelocityTemplateEngine().render(new ModelAndView(model, "template/" + templatePath));
+        return new VelocityTemplateEngine().render(new ModelAndView(model, "webapp/views/" + templatePath));
     }
 
     public static Route map(Converter c) {
