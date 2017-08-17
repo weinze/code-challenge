@@ -1,16 +1,16 @@
-package weinze.code.challenge.controller;
+package weinze.code.challenge.service.controller;
 
 import static spark.Spark.get;
 import static spark.Spark.path;
-import static weinze.code.challenge.controller.factory.RouteFactory.map;
-import static weinze.code.challenge.controller.factory.RouteFactory.ok;
-import static weinze.code.challenge.domain.utils.JsonUtils.transformer;
+import static weinze.code.challenge.service.controller.factory.RouteFactory.map;
+import static weinze.code.challenge.service.controller.factory.RouteFactory.ok;
+import static weinze.code.challenge.service.utils.JsonUtils.transformer;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import spark.Route;
 import weinze.code.challenge.domain.services.InsightsService;
-import weinze.code.challenge.domain.utils.PathsUtils;
+import weinze.code.challenge.service.utils.PathsUtils;
 
 @Singleton
 public class InsightsController implements GenericController {

@@ -10,14 +10,16 @@ import com.google.common.collect.ImmutableList;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import spark.servlet.SparkApplication;
-import weinze.code.challenge.controller.AirportController;
-import weinze.code.challenge.controller.GenericController;
-import weinze.code.challenge.controller.InsightsController;
+import weinze.code.challenge.service.controller.AirportController;
+import weinze.code.challenge.service.controller.GenericController;
+import weinze.code.challenge.service.controller.InsightsController;
 import weinze.code.challenge.domain.readers.AbstractReader;
 import weinze.code.challenge.domain.readers.AirportReader;
 import weinze.code.challenge.domain.readers.CountryReader;
 import weinze.code.challenge.domain.readers.RunwayReader;
-import weinze.code.challenge.domain.utils.PathsUtils;
+import weinze.code.challenge.service.controller.QueryController;
+import weinze.code.challenge.service.controller.ReportController;
+import weinze.code.challenge.service.utils.PathsUtils;
 
 public class App implements SparkApplication {
 
@@ -26,7 +28,7 @@ public class App implements SparkApplication {
     private static final String JSON = "application/json";
 
     private static final Injector injector = Guice.createInjector();
-    private static final List<Class<? extends GenericController>> controllers = ImmutableList.of(AirportController.class, InsightsController.class);
+    private static final List<Class<? extends GenericController>> controllers = ImmutableList.of(AirportController.class, InsightsController.class, QueryController.class, ReportController.class);
     private static final List<Class<? extends AbstractReader>> readers = ImmutableList.of(AirportReader.class, CountryReader.class, RunwayReader.class);
 
     public static void main(String[] args) throws Exception {

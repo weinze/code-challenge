@@ -1,0 +1,5 @@
+<ul>
+    #foreach( $key in $report.keySet() )
+    <li>Key: $key -> Value: $report.get($key)</li>
+    #end
+</ul>

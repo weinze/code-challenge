@@ -1,4 +1,4 @@
-package weinze.code.challenge.domain.utils;
+package weinze.code.challenge.service.utils;
 
 public class PathsUtils {
 

@@ -1,13 +1,17 @@
-package weinze.code.challenge.controller.factory;
+package weinze.code.challenge.service.controller.factory;
 
 import static org.eclipse.jetty.http.HttpStatus.BAD_REQUEST_400;
 import static org.eclipse.jetty.http.HttpStatus.INTERNAL_SERVER_ERROR_500;
 import static org.eclipse.jetty.http.HttpStatus.NOT_FOUND_404;
 import static org.eclipse.jetty.http.HttpStatus.OK_200;
 
+import java.util.Map;
+
+import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import spark.Route;
+import spark.template.velocity.VelocityTemplateEngine;
 
 public class RouteFactory {
 
@@ -32,6 +36,10 @@ public class RouteFactory {
             res.status(code);
             return body;
         };
+    }
+
+    public static String map(Map<String, Object> model, String templatePath) {
+        return new VelocityTemplateEngine().render(new ModelAndView(model, "template/" + templatePath));
     }
 
     public static Route map(Converter c) {

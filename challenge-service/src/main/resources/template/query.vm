@@ -1,0 +1,14 @@
+<form action="">
+    <select name="country">
+        <option value="name">Nombre del pa&iacute;s</option>
+        <option value="code">C&oacute;digo del pa&iacute;s</option>
+    </select>
+    <input name="value"/>
+    <button>QUERY</button>
+</form>
+
+<ul>
+    #foreach( $q in $query )
+    <li>$q.ident</li>
+    #end
+</ul>

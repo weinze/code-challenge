@@ -1,11 +1,11 @@
-package weinze.code.challenge.controller;
+package weinze.code.challenge.service.controller;
 
 import static java.util.Objects.nonNull;
 import static spark.Spark.get;
-import static weinze.code.challenge.controller.factory.RouteFactory.map;
-import static weinze.code.challenge.controller.factory.RouteFactory.ok;
-import static weinze.code.challenge.domain.utils.JsonUtils.transformer;
-import static weinze.code.challenge.domain.utils.PathsUtils.getApiPath;
+import static weinze.code.challenge.service.controller.factory.RouteFactory.map;
+import static weinze.code.challenge.service.controller.factory.RouteFactory.ok;
+import static weinze.code.challenge.service.utils.JsonUtils.transformer;
+import static weinze.code.challenge.service.utils.PathsUtils.getApiPath;
 
 import java.util.Arrays;
 

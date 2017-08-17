@@ -1,4 +1,4 @@
-package weinze.code.challenge.controller;
+package weinze.code.challenge.service.controller;
 
 public interface GenericController {
 
