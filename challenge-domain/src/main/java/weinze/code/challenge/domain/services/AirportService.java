@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.google.inject.Inject;
 import weinze.code.challenge.domain.model.Airport;
-import weinze.code.challenge.domain.model.insight.AirlineFilter;
+import weinze.code.challenge.domain.model.insight.AirportFilter;
 import weinze.code.challenge.domain.repository.AirportRepository;
 
 public class AirportService {
@@ -16,7 +16,7 @@ public class AirportService {
         this.repository = airportRepository;
     }
 
-    public List<Airport> getAirports(AirlineFilter filter) {
+    public List<Airport> getAirports(AirportFilter filter) {
         return this.repository.findAll(filter);
     }
 }

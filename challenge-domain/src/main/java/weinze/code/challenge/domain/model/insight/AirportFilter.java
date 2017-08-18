@@ -1,6 +1,6 @@
 package weinze.code.challenge.domain.model.insight;
 
-public class AirlineFilter {
+public class AirportFilter {
 
     private String countryName;
     private String countryCode;

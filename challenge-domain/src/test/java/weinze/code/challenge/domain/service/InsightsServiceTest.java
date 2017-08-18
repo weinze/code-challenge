@@ -1,10 +1,12 @@
 package weinze.code.challenge.domain.service;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertNull;
 import static org.testng.Assert.assertTrue;
+import static org.testng.collections.Lists.newArrayList;
 
 import java.util.List;
 import java.util.Map;
@@ -14,6 +16,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.google.common.collect.ImmutableList;
@@ -146,29 +149,38 @@ public class InsightsServiceTest {
         assertFalse(result.get(c2).contains("CC"));
     }
 
-    @Test
-    public void topRunways() {
+    @DataProvider
+    private Object[][] topRunwaysProvider() {
         final Runway r1 = runway(1L, "AA", "T1");
         final Runway r2 = runway(2L, "AA", "T2");
-        final Runway r3 = runway(2L, "BB", "T2");
-        final Runway r4 = runway(2L, "BB", "T2");
-        final Runway r5 = runway(3L, "CC", "T3");
-        final Runway r6 = runway(3L, "CC", "T3");
-        final Runway r7 = runway(3L, "CC", "T3");
-        final Runway r8 = runway(3L, "CC", "T4");
+        final Runway r22 = runway(2L, "BB", "T2");
+        final Runway r222 = runway(2L, "BB", "T2");
+        final Runway r3 = runway(3L, "CC", "T3");
+        final Runway r33 = runway(3L, "CC", "T3");
+        final Runway r333 = runway(3L, "CC", "T3");
+        final Runway r4 = runway(3L, "CC", "T4");
+        final Runway r44 = runway(3L, "CC", "T4");
 
-        Mockito.when(this.runwayRepository.findAll()).thenReturn(ImmutableList.of(r1, r2, r3, r4, r5, r6, r7, r8));
+        return new Object[][] {
+                {newArrayList(r1, r2, r22, r222, r3, r33, r333, r4, r44), new String[]{"T2", "T3"}, new String[]{"T1", "T4"}},
+                {newArrayList(r1, r2, r22, r222, r3, r4, r44), new String[]{"T2", "T4"}, new String[]{"T1", "T3"}},
+                {newArrayList(r1, r3, r33, r333, r4, r44), new String[]{"T3", "T4"}, new String[]{"T1", "T2"}},
+                {newArrayList(r1, r4, r44), new String[]{"T1", "T4"}, new String[]{"T2", "T3"}},
+                {newArrayList(r3, r33, r333, r4, r44), new String[]{"T3", "T4"}, new String[]{"T1", "T2"}},
+        };
+    }
+
+    @Test(dataProvider = "topRunwaysProvider")
+    public void topRunways(List<Runway> runways, String[] expected, String[] notExpected) {
+
+        Mockito.when(this.runwayRepository.findAll()).thenReturn(runways);
 
         final List<String> result = target.topRunways(2);
 
         assertNotNull(result);
-        assertEquals(2, result.size());
+        assertEquals(2, result.size()); // TODO fail if runways size is minor that 2
 
-        assertFalse(result.contains("T1"));
-        assertTrue(result.contains("T2"));
-        assertTrue(result.contains("T3"));
-        assertFalse(result.contains("T4"));
-
+        assertThat(result).contains(expected).doesNotContain(notExpected);
     }
 
     private Airport airport(Long id, String isoCountry) {

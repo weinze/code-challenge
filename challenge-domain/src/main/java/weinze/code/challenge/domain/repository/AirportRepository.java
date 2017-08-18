@@ -14,7 +14,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import weinze.code.challenge.domain.model.Airport;
 import weinze.code.challenge.domain.model.Country;
-import weinze.code.challenge.domain.model.insight.AirlineFilter;
+import weinze.code.challenge.domain.model.insight.AirportFilter;
 
 @Singleton
 public class AirportRepository extends AbstractRepository<Airport> {
@@ -38,7 +38,7 @@ public class AirportRepository extends AbstractRepository<Airport> {
         this.airports = entities;
     }
 
-    public List<Airport> findAll(AirlineFilter filter) {
+    public List<Airport> findAll(AirportFilter filter) {
 
         if(StringUtils.isNotBlank(filter.getCountryCode())) {
             return stream(findAll()).filter(filterByIsoCountry(filter.getCountryCode())).collect(toList());

@@ -8,7 +8,7 @@ import java.util.Map;
 
 import com.google.inject.Inject;
 import spark.QueryParamsMap;
-import weinze.code.challenge.domain.model.insight.AirlineFilter;
+import weinze.code.challenge.domain.model.insight.AirportFilter;
 import weinze.code.challenge.domain.services.AirportService;
 import weinze.code.challenge.service.utils.PathsUtils;
 
@@ -32,8 +32,8 @@ public class QueryController implements GenericController {
         return map(attributes, "query.vm");
     }
 
-    private AirlineFilter buildFilter(QueryParamsMap query) {
-        final AirlineFilter filter = new AirlineFilter();
+    private AirportFilter buildFilter(QueryParamsMap query) {
+        final AirportFilter filter = new AirportFilter();
         final QueryParamsMap country = query.get("country");
         if(country.hasValue()) {
             if(country.value().equals("name")) {
