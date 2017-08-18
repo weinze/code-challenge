@@ -5,6 +5,8 @@ public class Country extends PersistentEntity {
     private String code;
     private String name;
     private String continent;
+    private String wikipediaLink;
+    private String keywords;
 
     public String getCode() {
         return code;
@@ -30,14 +32,19 @@ public class Country extends PersistentEntity {
         this.continent = continent;
     }
 
-    @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("Country{");
-        sb.append("id=").append(id);
-        sb.append(", code='").append(code).append('\'');
-        sb.append(", name='").append(name).append('\'');
-        sb.append(", continent='").append(continent).append('\'');
-        sb.append('}');
-        return sb.toString();
+    public String getWikipediaLink() {
+        return wikipediaLink;
+    }
+
+    public void setWikipediaLink(String wikipediaLink) {
+        this.wikipediaLink = wikipediaLink;
+    }
+
+    public String getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
     }
 }

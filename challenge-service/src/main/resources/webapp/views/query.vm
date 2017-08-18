@@ -19,12 +19,18 @@
 <div class="table">
     <div class="table-row">
         <div class="table-head"><strong>Ident</strong></div>
+        <div class="table-head"><strong>Type</strong></div>
+        <div class="table-head"><strong>Name</strong></div>
         <div class="table-head"><strong>Iso Country</strong></div>
+        <div class="table-head"><strong>Municipality</strong></div>
     </div>
     #foreach( $value in $query )
     <div class="table-row">
         <div class="table-cell">$value.ident</div>
+        <div class="table-cell">$value.type</div>
+        <div class="table-cell">$value.name</div>
         <div class="table-cell">$value.isoCountry</div>
+        <div class="table-cell">$value.municipality</div>
     </div>
     #end
 </div>

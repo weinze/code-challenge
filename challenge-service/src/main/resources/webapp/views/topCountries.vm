@@ -12,12 +12,14 @@
     <div class="table-row">
         <div class="table-head"><strong>Code</strong></div>
         <div class="table-head"><strong>Name</strong></div>
+        <div class="table-head"><strong>Continent</strong></div>
         <div class="table-head"><strong>Total airports</strong></div>
     </div>
     #foreach( $value in $report )
     <div class="table-row">
         <div class="table-cell">$value.country.code</div>
         <div class="table-cell">$value.country.name</div>
+        <div class="table-cell">$value.country.continent</div>
         <div class="table-cell">$value.airports</div>
     </div>
     #end

@@ -30,10 +30,12 @@ public class CountryReader extends AbstractReader<Country> {
     @Override
     protected Country map(String[] line) {
         final Country country = new Country();
-        country.setId(Long.valueOf(line[0]));
+        country.setId(longValue(line[0]));
         country.setCode(line[1]);
         country.setName(line[2]);
         country.setContinent(line[3]);
+        country.setWikipediaLink(line[4]);
+        country.setKeywords(line[5]);
         return country;
     }
 }

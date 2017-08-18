@@ -5,8 +5,10 @@ import static weinze.code.challenge.domain.utils.CollectionUtils.stream;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,5 +35,20 @@ public abstract class AbstractReader<T extends PersistentEntity> {
     protected abstract String getFilePath();
     protected abstract void saveList(List<T> list);
     protected abstract T map(String[] line);
+
+    protected Long longValue(String str) {
+        return StringUtils.isNotBlank(str) ? Long.valueOf(str) : null;
+    }
+
+    protected BigDecimal bigDecimalValue(String str) {
+        return StringUtils.isNotBlank(str) ? new BigDecimal(str) : null;
+    }
+
+    protected Boolean booleanValue(String str) {
+        if(StringUtils.isNotBlank(str)) {
+            return str.equals("1") ? Boolean.TRUE : Boolean.FALSE;
+        }
+        return Boolean.FALSE;
+    }
 
 }
