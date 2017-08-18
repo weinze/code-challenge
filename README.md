@@ -9,6 +9,7 @@ Ejecutar la clase App.
 - http://localhost:4567/code-challenge/query
 ##### JSON
 - http://localhost:4567/code-challenge/api/airports?country_code=AR
+- http://localhost:4567/code-challenge/api/airports?country_name=Brazil
 
 ## Report:
 ##### HTML 
