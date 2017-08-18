@@ -31,6 +31,7 @@ public abstract class AbstractRepository<T extends PersistentEntity> {
     }
 
     protected abstract List<T> cachedEntities();
+
     protected abstract void cachedEntities(List<T> entities);
 
 }

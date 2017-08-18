@@ -43,11 +43,9 @@ public class InsightsService {
 
         final Map<String, Long> countByCountry = stream(airportRepository.findAll()).collect(groupingBy(Airport::getIsoCountry, Collectors.counting()));
 
-        // TODO Ver forEachOrdered
         return stream(countByCountry.entrySet())
                 .sorted(comparingByValue(comparator))
-                .limit(limit)
-                .map(e -> countryRepository.findByCode(e.getKey()))
+                .limit(limit).map(e -> countryRepository.findByCode(e.getKey()))
                 .collect(toMap(identity(), c -> countByCountry.get(c.getCode())));
     }
 
@@ -61,8 +59,7 @@ public class InsightsService {
                 .stream()
                 .filter(airport -> airportWithRunways.get(airport.getId()) != null)
                 .flatMap(airport -> airportWithRunways.get(airport.getId()).stream())
-                .map(Runway::getSurface)
-                .distinct()
+                .map(Runway::getSurface).distinct()
                 .collect(toList());
 
         return stream(countryWithAirport.entrySet())

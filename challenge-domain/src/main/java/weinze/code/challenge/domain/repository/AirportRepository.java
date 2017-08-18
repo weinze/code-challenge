@@ -43,7 +43,9 @@ public class AirportRepository extends AbstractRepository<Airport> {
         if(StringUtils.isNotBlank(filter.getCountryCode())) {
             return stream(findAll()).filter(filterByIsoCountry(filter.getCountryCode())).collect(toList());
         } else if(StringUtils.isNotBlank(filter.getCountryName())) {
-            final Optional<Country> country = this.countryRepository.findAll().stream().filter(c -> c.getName().equalsIgnoreCase(filter.getCountryName())).findFirst();
+            final Optional<Country> country = stream(this.countryRepository.findAll())
+                    .filter(c -> c.getName().equalsIgnoreCase(filter.getCountryName()))
+                    .findFirst();
             if(country.isPresent()) {
                 return stream(findAll()).filter(filterByIsoCountry(country.get().getCode())).collect(toList());
             }

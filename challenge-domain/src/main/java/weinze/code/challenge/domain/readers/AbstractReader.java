@@ -28,12 +28,14 @@ public abstract class AbstractReader<T extends PersistentEntity> {
         try(FileReader fileReader = new FileReader(this.getFilePath())) {
             this.saveList(this.readCSV(fileReader));
         } catch(Exception e) {
-            LOGGER.error("Error", e); // TODO
+            throw new RuntimeException(String.format("Cannot read file: %s", this.getFilePath()), e);
         }
     }
 
     protected abstract String getFilePath();
+
     protected abstract void saveList(List<T> list);
+
     protected abstract T map(String[] line);
 
     protected Long longValue(String str) {

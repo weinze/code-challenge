@@ -18,11 +18,17 @@ public class ApiService {
     }
 
     public List<CountryWithAirports> topCountriesWithMoreAirports(int limit, boolean desc) {
-        return this.insightsService.topCountriesWithMoreAirports(limit, desc).entrySet().stream().map(e -> new CountryWithAirports(e.getKey(), e.getValue())).collect(toList());
+        return this.insightsService.topCountriesWithMoreAirports(limit, desc).entrySet()
+                .stream()
+                .map(e -> new CountryWithAirports(e.getKey(), e.getValue()))
+                .collect(toList());
     }
 
     public List<CountryWithRunways> runwaysByCountry() {
-        return this.insightsService.runwaysByCountry().entrySet().stream().map(e -> new CountryWithRunways(e.getKey(), e.getValue())).collect(toList());
+        return this.insightsService.runwaysByCountry().entrySet()
+                .stream()
+                .map(e -> new CountryWithRunways(e.getKey(), e.getValue()))
+                .collect(toList());
     }
 
     public List<String> topRunways(int limit) {
