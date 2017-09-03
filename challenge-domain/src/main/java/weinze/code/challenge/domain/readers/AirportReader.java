@@ -8,7 +8,7 @@ import weinze.code.challenge.domain.repository.AirportRepository;
 
 public class AirportReader extends AbstractReader<Airport> {
 
-    private static final String FILE_PATH = "data/airports.csv";
+    private static final String FILE_PATH = "/data/airports.csv";
 
     private AirportRepository repository;
 

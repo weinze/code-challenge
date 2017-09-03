@@ -3,8 +3,10 @@ package weinze.code.challenge.domain.readers;
 import static java.util.stream.Collectors.toList;
 import static weinze.code.challenge.domain.utils.CollectionUtils.stream;
 
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -19,15 +21,16 @@ public abstract class AbstractReader<T extends PersistentEntity> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractReader.class);
 
-    protected List<T> readCSV(FileReader file) throws IOException {
+    protected List<T> readCSV(Reader file) throws IOException {
         final CSVReader reader = new CSVReader(file);
         return stream(reader.readAll()).skip(1).map(this::map).collect(toList());
     }
 
     public void init() {
-        try(FileReader fileReader = new FileReader(this.getFilePath())) {
-            this.saveList(this.readCSV(fileReader));
+        try(InputStream fileReader = this.getClass().getResourceAsStream(this.getFilePath())) {
+            this.saveList(this.readCSV(new InputStreamReader(fileReader)));
         } catch(Exception e) {
+            LOGGER.error("", e);
             throw new RuntimeException(String.format("Cannot read file: %s", this.getFilePath()), e);
         }
     }

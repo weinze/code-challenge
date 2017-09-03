@@ -8,7 +8,7 @@ import weinze.code.challenge.domain.repository.CountryRepository;
 
 public class CountryReader extends AbstractReader<Country> {
 
-    private static final String FILE_PATH = "data/countries.csv";
+    private static final String FILE_PATH = "/data/countries.csv";
 
     private CountryRepository repository;
 

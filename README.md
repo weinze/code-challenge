@@ -1,8 +1,15 @@
 # Code Challenge
 
-Compilar proyecto con Maven.
+Compilar proyecto con Maven:
+```
+mvn clean install compile
+```
 
-Ejecutar la clase App.
+Ejecutar la clase App:
+```
+cd challenge-service
+mvn exec:java -Dexec.mainClass="weinze.code.challenge.service.App"
+```
 
 ## Query:
 ##### HTML
